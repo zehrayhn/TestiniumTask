@@ -18,7 +18,6 @@ public class BaseTest {
     protected WebDriver driver;
 
 
-
     @BeforeAll
     public void setUp() {
         ChromeOptions options = new ChromeOptions();
@@ -35,10 +34,10 @@ public class BaseTest {
         Assertions.assertEquals(currentUrl, expectedUrl, "URL eşleşmedi.");
     }
 
-     //@AfterAll
+    //@AfterAll
     // public void tearDown(){
-     //  driver.quit();
-     // }
+    //  driver.quit();
+    // }
 
 
 }

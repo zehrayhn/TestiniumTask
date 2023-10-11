@@ -9,19 +9,20 @@ import java.util.Set;
 
 public class HomePage extends BasePage {
 
-    By loginCookieRejectLocator= By.xpath("//*[@id=\'close-button-1454703513202\']");
-    By cookieRejectLocator=new By.ByCssSelector("[id=\'CybotCookiebotDialogBodyLevelButtonLevelOptinDeclineAll\']");
-    By popUpFirst =new By.ByCssSelector("[id=\'responsive-image-1689835577900100\']");
-    By popUpSecond =new By.ByCssSelector("[id=\'CybotCookiebotDialog\']");
-    By destinationLocator =new By.ByCssSelector("[placeholder=\'Otel Adı Veya Konum\']");
-    By otelTabLocator= new By.ByCssSelector("[class=\'Tab__StyledTab-sc-1gyyeis-1 eDgwud\']");
+    By loginCookieRejectLocator = By.xpath("//*[@id=\'close-button-1454703513202\']");
+    By cookieRejectLocator = new By.ByCssSelector("[id=\'CybotCookiebotDialogBodyLevelButtonLevelOptinDeclineAll\']");
+    By popUpFirst = new By.ByCssSelector("[id=\'responsive-image-1689835577900100\']");
+    By popUpSecond = new By.ByCssSelector("[id=\'CybotCookiebotDialog\']");
+    By destinationLocator = new By.ByCssSelector("[placeholder=\'Otel Adı Veya Konum\']");
+    By otelTabLocator = new By.ByCssSelector("[class=\'Tab__StyledTab-sc-1gyyeis-1 eDgwud\']");
+
     public HomePage(WebDriver driver) {
         super(driver);
     }
 
-    public void fillOut(String text){
+    public void fillOut(String text) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement otel= wait.until(ExpectedConditions.elementToBeClickable(otelTabLocator));
+        WebElement otel = wait.until(ExpectedConditions.elementToBeClickable(otelTabLocator));
         otel.click();
         String currentWindow = driver.getWindowHandle();
         Set<String> windows = driver.getWindowHandles();
@@ -37,7 +38,7 @@ public class HomePage extends BasePage {
 
     }
 
-    public void acceptCookies(){
+    public void acceptCookies() {
         try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
             wait.until(ExpectedConditions.visibilityOfElementLocated(popUpFirst));
@@ -45,10 +46,9 @@ public class HomePage extends BasePage {
             if (popupFirst.isDisplayed()) {
                 popupFirst.findElement(loginCookieRejectLocator).click();
             }
-        }
-        catch (TimeoutException e){
+        } catch (TimeoutException e) {
 
-            System.err.println("hata");
+            System.err.println("İlk cookie gelmedi");
         }
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
@@ -62,7 +62,7 @@ public class HomePage extends BasePage {
     }
 
 
-    public void allowCookie(){
+    public void allowCookie() {
 
         Set<Cookie> cookies = driver.manage().getCookies();
 
